@@ -1,7 +1,7 @@
 #bot id in telegram = https://t.me/blahman_bot
 import telebot
 
-bot = telebot.TeleBot("6602525887:AAHDXzjr-IPyrJ0UB8oeAXxK7__sc8DH3hc")
+bot = telebot.TeleBot("")
 
 
 second_button = telebot.types.InlineKeyboardButton("button 2", url="https://www.itgeared.com/how-to-stop-telegram-auto-download/")
