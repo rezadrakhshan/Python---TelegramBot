@@ -1,8 +1,7 @@
 import telebot
 
 
-
-bot = telebot.TeleBot('')
+bot = telebot.TeleBot('6071743808:AAFVtY4XHF5cwYOAy06dR53mnpzoDcjiwR4')
 
 lan = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True,row_width=2)
 lan.add("persian","english")
@@ -27,6 +26,16 @@ markup.add(github)
 engithub = telebot.types.InlineKeyboardButton("Git Hub",url="https://github.com/rezadrakhshan")
 engmarkup = telebot.types.InlineKeyboardMarkup()
 engmarkup.add(engithub)
+
+linkedin = telebot.types.InlineKeyboardButton("لینکدین",url="https://www.linkedin.com/in/seyedrezadrakhshan/")
+linkmark = telebot.types.InlineKeyboardMarkup()
+linkmark.add(linkedin)
+
+englinkedin = telebot.types.InlineKeyboardButton("Linkedin",url="https://www.linkedin.com/in/seyedrezadrakhshan/")
+englinkmark = telebot.types.InlineKeyboardMarkup()
+englinkmark.add(englinkedin)
+
+
 
 @bot.message_handler()
 def persian(message):
@@ -53,7 +62,7 @@ def command(message):
         msg = bot.send_message(message.chat.id,"فالو و استار فراموش نشه",reply_markup=markup)
         bot.register_next_step_handler(msg, command)
     if message.text == "لینکدین":
-        msg = bot.send_message(message.chat.id,"این بخش در دسترس نمی باشد.")
+        msg = bot.send_message(message.chat.id,"در لینکدین با من در ارتباط باشید.",reply_markup=linkmark)
         bot.register_next_step_handler(msg, command)
     if message.text == "ارتباط با من":
         msg = bot.send_message(message.chat.id,"""اگر هرگونه سوال,انتقاد یا پیشنهادی دارید میتوانید از طریق راه های زیر با من در ارتباط باشید.
@@ -74,7 +83,7 @@ Considering my experience and the skills I have, I am sure that I can have a use
         msg = bot.send_message(message.chat.id,"Do not forget to follow and star",reply_markup=engmarkup)
         bot.register_next_step_handler(msg, command)
     if message.text == "linkedin":
-        msg = bot.send_message(message.chat.id,"This section is not available.")
+        msg = bot.send_message(message.chat.id,"shoot me a message on Linkedin" ,reply_markup=englinkmark)
         bot.register_next_step_handler(msg, command)
     if message.text == "contact me":
         msg = bot.send_message(message.chat.id,"""If you have any questions, criticisms or suggestions, you can contact me through the following ways.
