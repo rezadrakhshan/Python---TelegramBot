@@ -1,7 +1,7 @@
 import telebot
 
 
-bot = telebot.TeleBot('')
+bot = telebot.TeleBot('Your Token')
 
 lan = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True,row_width=2)
 lan.add("persian","english")
