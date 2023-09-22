@@ -1,7 +1,7 @@
 import telebot
 
 
-bot = telebot.TeleBot('6071743808:AAFVtY4XHF5cwYOAy06dR53mnpzoDcjiwR4')
+bot = telebot.TeleBot('')
 
 lan = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True,row_width=2)
 lan.add("persian","english")
