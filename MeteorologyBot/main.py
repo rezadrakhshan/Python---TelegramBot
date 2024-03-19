@@ -18,6 +18,6 @@ async def start(event):
 <b>Made by:<a href="https://github.com/rezadrakhshan/" style="text-decoration: none;">RezaDerakhshan</a></b>""",parse_mode='html')
 
 
-client.start(bot_token="7110386237:AAGhkfozqIeoPd_e6giviMtHT-5eNv6Qs2Q")
+client.start(bot_token="")
 client.run_until_disconnected()
 
