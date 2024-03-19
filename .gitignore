@@ -1,4 +1,4 @@
 *.session
 *.session-journal
 __pycache__
-config.py
+MeteorologyBot/config.py
