@@ -2,10 +2,8 @@ from telethon import TelegramClient, events, Button
 from config import *
 from messages import start_message
 from telethon.tl.custom.message import Message
-from city.Tehran import req as tehranreq
-from city.Tehran import timee as tehrantime
-from city.Karaj import req as karajreq
-from city.Karaj import timee as karajtime
+from city.Tehran.messages import msg as tehran
+from city.Karaj.messages import msg as karaj
 
 client = TelegramClient("bot_session", api_id=api_id, api_hash=api_hash)
 
@@ -93,13 +91,26 @@ async def callback_query(event):
 
 @client.on(events.CallbackQuery)
 async def temperature(event):
+    markup = client.build_reply_markup([Button.inline(text="بازگشت", data="back")])
+    if event.data == b"back":
+        await client.delete_messages(entity=event.chat_id,message_ids=event.message_id)
+        await start(event) 
     if event.data == b"Tehran":
-        temp = str(tehranreq.temps[tehrantime.hour])
-        await client.edit_message(event.chat_id, event.message_id, text=temp)
+        await client.edit_message(
+            entity=event.chat_id, 
+            message=event.message_id,
+            text=tehran,
+            parse_mode="html",
+            buttons=markup,
+        )
     if event.data == b"Karaj":
-        temp = str(karajreq.temps[karajtime.hour])
-        await client.edit_message(event.chat_id, event.message_id, text=temp)
-
+        await client.edit_message(
+            entity=event.chat_id, 
+            message=event.message_id,
+            text=karaj,
+            parse_mode="html",
+            buttons=markup,
+        )
 
 
 client.start(bot_token="")
