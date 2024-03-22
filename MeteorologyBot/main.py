@@ -4,6 +4,8 @@ from messages import start_message
 from telethon.tl.custom.message import Message
 from city.Tehran.messages import msg as tehran
 from city.Karaj.messages import msg as karaj
+from city.Esfahan.messages import msg as esfahan
+from city.Shiraz.messages import msg as shiraz
 
 client = TelegramClient("bot_session", api_id=api_id, api_hash=api_hash)
 
@@ -108,6 +110,22 @@ async def temperature(event):
             entity=event.chat_id, 
             message=event.message_id,
             text=karaj,
+            parse_mode="html",
+            buttons=markup,
+        )
+    if event.data == b"Esfahan":
+        await client.edit_message(
+            entity=event.chat_id, 
+            message=event.message_id,
+            text=esfahan,
+            parse_mode="html",
+            buttons=markup,
+        )
+    if event.data == b"Shiraz":
+        await client.edit_message(
+            entity=event.chat_id, 
+            message=event.message_id,
+            text=shiraz,
             parse_mode="html",
             buttons=markup,
         )
