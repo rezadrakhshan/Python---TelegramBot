@@ -4,7 +4,7 @@ from messages import start_message
 from telethon.tl.custom.message import Message
 from state.Alborz.req import *
 import mysql.connector
-from data import state,cities_dict
+from data import state, cities_dict
 
 db = mysql.connector.connect(host=host, user=user, password=password, database=database)
 cursor = db.cursor()
@@ -12,7 +12,7 @@ cursor = db.cursor()
 
 client = TelegramClient("bot_session", api_id=api_id, api_hash=api_hash)
 
-buttons = [] 
+buttons = []
 temp_buttons = []
 
 for province_name, province_name_en in state.items():
@@ -28,23 +28,19 @@ if temp_buttons:
 @client.on(events.NewMessage(pattern=r"/start"))
 async def start(event: Message):
     text = start_message()
-    markup = [
-        [
-            Button.url("Made By Derakhshan","https://github.com/rezadrakhshan")
-        ]
-    ]
+    markup = [[Button.url("Made By Derakhshan", "https://github.com/rezadrakhshan")]]
     try:
         cursor.execute(
             "INSERT INTO user (ID, state, city) VALUES (%s, %s, %s);",
             (str(event.chat_id), "test", "test"),
         )
         db.commit()
-        await client.send_message(entity=event.chat_id, message=text,buttons=markup)
+        await client.send_message(entity=event.chat_id, message=text, buttons=markup)
         await client.send_message(
-            entity=event.chat_id, message="استان خود را انتخاب کنید", buttons=buttons
+            entity=event.chat_id, message="استان خود را انتخاب کنید:", buttons=buttons
         )
     except:
-        await client.send_message(entity=event.chat_id, message=text,buttons=markup)
+        await client.send_message(entity=event.chat_id, message=text, buttons=markup)
         await client.send_message(
             entity=event.chat_id, message="استان خود را انتخاب کنید", buttons=buttons
         )
@@ -62,17 +58,30 @@ async def call_back_state(event: Message):
                 )
                 db.commit()
                 city = cities_dict[data]
-                button = [Button.inline(name, data=english_name) for name, english_name in city]
-                await client.edit_message(event.chat_id,event.message_id,text="شهر خود را انتخاب کنید:",buttons=button)
+                button = [
+                    Button.inline(name, data=english_name)
+                    for name, english_name in city
+                ]
+                await client.edit_message(
+                    event.chat_id,
+                    event.message_id,
+                    text="شهر خود را انتخاب کنید:",
+                    buttons=button,
+                )
             except:
-                await client.edit_message(event.chat_id,event.message_id,text="خطا")
+                await client.edit_message(event.chat_id, event.message_id, text="خطا")
 
 
 @client.on(events.CallbackQuery)
 async def call_back_city(event: Message):
     data = event.data.decode("utf-8")
+    button = [
+        [
+            Button.inline("دما", data="temp"),
+        ]
+    ]
     for i in cities_dict.values():
-        for j,z in i:
+        for j, z in i:
             if data == z:
                 try:
                     cursor.execute(
@@ -80,10 +89,23 @@ async def call_back_city(event: Message):
                         (str(data), str(event.chat_id)),
                     )
                     db.commit()
-                    await client.edit_message(event.chat_id,event.message_id,text="شهر با موفقیت ثبت شد")
+                    await client.edit_message(
+                        event.chat_id,
+                        event.message_id,
+                        text="گزینه خود را انتخاب کنید: ",
+                        buttons=button,
+                    )
                 except:
-                    await client.edit_message(event.chat_id,event.message_id,text="خطا")
+                    await client.edit_message(
+                        event.chat_id, event.message_id, text="خطا"
+                    )
 
+
+@client.on(events.CallbackQuery)
+async def call_back_service(event: Message):
+    match event.data:
+        case b"temp":
+            await client.edit_message(event.chat_id, event.message_id, "دما")
 
 
 client.start(bot_token="")

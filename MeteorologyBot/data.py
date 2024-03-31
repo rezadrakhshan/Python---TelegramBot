@@ -1,3 +1,4 @@
+
 state = {
     "آذربایجان شرقی": "East Azerbaijan",
     "آذربایجان غربی": "West Azerbaijan",
@@ -111,6 +112,7 @@ cities_dict = {
     "Hamedan": [("همدان", "hamedan"), ("ملایر", "malayer"), ("نهاوند", "nahavand")],
     "Yazd": [("یزد", "yazd"), ("میبد", "meybod"), ("اردکان", "ardakan")],
 }
+
 
 
 
