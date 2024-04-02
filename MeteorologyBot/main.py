@@ -3,6 +3,7 @@ from config import *
 from messages import start_message
 from telethon.tl.custom.message import Message
 from state.Alborz.req import *
+from state.Ardabil.req import *
 import mysql.connector
 from data import state, cities_dict
 
@@ -115,6 +116,9 @@ async def call_back_service(event: Message):
         case b"temp":
             if user_state_format == "Alborz":
                 text = alborz(user_city_format)
+                await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
+            if user_state_format == "Ardabil":
+                text = ardabil(user_city_format)
                 await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
 
 
