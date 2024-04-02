@@ -6,6 +6,7 @@ from state.Alborz.req import *
 import mysql.connector
 from data import state, cities_dict
 
+
 db = mysql.connector.connect(host=host, user=user, password=password, database=database)
 cursor = db.cursor()
 
@@ -83,29 +84,38 @@ async def call_back_city(event: Message):
     for i in cities_dict.values():
         for j, z in i:
             if data == z:
-                try:
-                    cursor.execute(
-                        "UPDATE user SET city = %s WHERE ID = %s;",
-                        (str(data), str(event.chat_id)),
-                    )
-                    db.commit()
-                    await client.edit_message(
-                        event.chat_id,
-                        event.message_id,
-                        text="گزینه خود را انتخاب کنید: ",
-                        buttons=button,
-                    )
-                except:
-                    await client.edit_message(
-                        event.chat_id, event.message_id, text="خطا"
-                    )
+                cursor.execute(
+                    "UPDATE user SET city = %s WHERE ID = %s;",
+                    (str(data), str(event.chat_id)),
+                )
+                db.commit()
+                await client.edit_message(
+                    event.chat_id,
+                    event.message_id,
+                    text="گزینه خود را انتخاب کنید: ",
+                    buttons=button,
+                )
+            # except:
+            #     await client.edit_message(
+            #         event.chat_id, event.message_id, text="خطا"
+            #     )
 
 
 @client.on(events.CallbackQuery)
 async def call_back_service(event: Message):
+    query = "SELECT state FROM user WHERE ID = %s"
+    cursor.execute(query, (str(event.chat_id),))
+    user_state = cursor.fetchone()
+    user_state_format = str(user_state[0])
+    city = "SELECT city FROM user WHERE ID = %s"
+    cursor.execute(city, (str(event.chat_id),))
+    user_city = cursor.fetchone()
+    user_city_format = str(user_city[0])
     match event.data:
         case b"temp":
-            await client.edit_message(event.chat_id, event.message_id, "دما")
+            if user_state_format == "Alborz":
+                text = alborz(user_city_format)
+                await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
 
 
 client.start(bot_token="")
