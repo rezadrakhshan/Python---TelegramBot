@@ -5,7 +5,7 @@ nowtimes = datetime.now()
 
 hour = nowtimes.hour
 
-def ardabil(data):
+def ardabiltemp(data):
     if data == "ardabil":
         URL = "https://api.open-meteo.com/v1/forecast?latitude=38.2498&longitude=48.2933&hourly=temperature_2m"
         location = "delhi technologicaluniversity"

@@ -5,7 +5,7 @@ nowtimes = datetime.now()
 
 hour = nowtimes.hour
 
-def bushehr(data):
+def bushehrtemp(data):
     if data == "bushehr":
         URL = "https://api.open-meteo.com/v1/forecast?latitude=28.9689&longitude=50.8366&hourly=temperature_2m"
         location = "delhi technologicaluniversity"
