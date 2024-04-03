@@ -8,6 +8,7 @@ from state.Bushehr.req import *
 from state.ChaharmahalandBakhtiari.req import *
 from state.EastAzerbaijan.req import *
 from state.Fars.req import *
+from state.Gilan.req import *
 import mysql.connector
 from data import state, cities_dict
 
@@ -135,6 +136,9 @@ async def call_back_service(event: Message):
                 await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
             if user_state_format == "Fars":
                 text = Farstemp(user_city_format)
+                await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
+            if user_state_format == "Gilan":
+                text = Gilantemp(user_city_format)
                 await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
 
 
