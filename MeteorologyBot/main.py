@@ -9,6 +9,7 @@ from state.ChaharmahalandBakhtiari.req import *
 from state.EastAzerbaijan.req import *
 from state.Fars.req import *
 from state.Gilan.req import *
+from state.Golestan.req import *
 import mysql.connector
 from data import state, cities_dict
 
@@ -122,23 +123,26 @@ async def call_back_service(event: Message):
             if user_state_format == "Alborz":
                 text = alborztemp(user_city_format)
                 await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
-            if user_state_format == "Ardabil":
+            elif user_state_format == "Ardabil":
                 text = ardabiltemp(user_city_format)
                 await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
-            if user_state_format == "Bushehr":
+            elif user_state_format == "Bushehr":
                 text = bushehrtemp(user_city_format)
                 await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
-            if user_state_format == "Chaharmahal and Bakhtiari":
+            elif user_state_format == "Chaharmahal and Bakhtiari":
                 text = ChaharmahalandBakhtiaritemp(user_city_format)
                 await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
-            if user_state_format == "East Azerbaijan":
+            elif user_state_format == "East Azerbaijan":
                 text = EastAzerbaijantemp(user_city_format)
                 await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
-            if user_state_format == "Fars":
+            elif user_state_format == "Fars":
                 text = Farstemp(user_city_format)
                 await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
-            if user_state_format == "Gilan":
+            elif user_state_format == "Gilan":
                 text = Gilantemp(user_city_format)
+                await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
+            elif user_state_format == "Golestan":
+                text = Golestantemp(user_city_format)
                 await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
 
 
