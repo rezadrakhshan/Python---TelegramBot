@@ -10,7 +10,7 @@ state = {
     "تهران": "Tehran",
     "چهارمحال و بختیاری": "Chaharmahal and Bakhtiari",
     "خراسان جنوبی": "South Khorasan",
-    "خراسان رضوی": "Razavi Khorasan",
+    "خراسان رضوی": "Razavi Khorasan", 
     "خراسان شمالی": "North Khorasan",
     "خوزستان": "Khuzestan",
     "زنجان": "Zanjan",
