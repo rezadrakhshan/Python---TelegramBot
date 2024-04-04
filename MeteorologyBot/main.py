@@ -13,7 +13,7 @@ from state.Golestan.req import *
 from state.Hamadan.req import *
 from state.Hormozgan.req import *
 from state.Ilam.req import *
-
+from state.Isfahan.req import *
 import mysql.connector
 from data import state, cities_dict
 
@@ -176,6 +176,11 @@ async def call_back_service(event: Message):
                 )
             elif user_state_format == "Ilam":
                 text = Ilamtemp(user_city_format)
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
+            elif user_state_format == "Isfahan":
+                text = Isfahantemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
