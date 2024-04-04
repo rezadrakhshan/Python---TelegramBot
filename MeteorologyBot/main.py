@@ -12,6 +12,8 @@ from state.Gilan.req import *
 from state.Golestan.req import *
 from state.Hamadan.req import *
 from state.Hormozgan.req import *
+from state.Ilam.req import *
+
 import mysql.connector
 from data import state, cities_dict
 
@@ -124,36 +126,60 @@ async def call_back_service(event: Message):
         case b"temp":
             if user_state_format == "Alborz":
                 text = alborztemp(user_city_format)
-                await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
             elif user_state_format == "Ardabil":
                 text = ardabiltemp(user_city_format)
-                await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
             elif user_state_format == "Bushehr":
                 text = bushehrtemp(user_city_format)
-                await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
             elif user_state_format == "Chaharmahal and Bakhtiari":
                 text = ChaharmahalandBakhtiaritemp(user_city_format)
-                await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
             elif user_state_format == "East Azerbaijan":
                 text = EastAzerbaijantemp(user_city_format)
-                await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
             elif user_state_format == "Fars":
                 text = Farstemp(user_city_format)
-                await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
             elif user_state_format == "Gilan":
                 text = Gilantemp(user_city_format)
-                await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
             elif user_state_format == "Golestan":
                 text = Golestantemp(user_city_format)
-                await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
             elif user_state_format == "Hamedan":
                 text = Hamadantemp(user_city_format)
-                await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
             elif user_state_format == "Hormozgan":
                 text = Hormozgantemp(user_city_format)
-                await client.edit_message(event.chat_id,event.message_id,text,parse_mode="html")
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
+            elif user_state_format == "Ilam":
+                text = Ilamtemp(user_city_format)
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
 
 
- 
 client.start(bot_token="")
 client.run_until_disconnected()
