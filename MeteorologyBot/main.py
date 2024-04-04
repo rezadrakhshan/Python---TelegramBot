@@ -180,6 +180,11 @@ async def call_back_service(event: Message):
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
+            elif user_state_format == "Isfahan":
+                text = Isfahantemp(user_city_format)
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
             elif user_state_format == "Kerman":
                 text = Kermantemp(user_city_format)
                 await client.edit_message(
