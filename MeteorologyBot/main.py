@@ -25,6 +25,8 @@ import s.Semnan
 import s.Semnan.req
 import s.SistanandBaluchestan
 import s.SistanandBaluchestan.req
+import s.SouthKhorasan
+import s.SouthKhorasan.req
 
 
 db = mysql.connector.connect(host=host, user=user, password=password, database=database)
@@ -259,6 +261,11 @@ async def call_back_service(event: Message):
                 )
             elif user_state_format == "Sistan and Baluchestan":
                 text = s.SistanandBaluchestan.req.SistanandBaluchestantemp(user_city_format)
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
+            elif user_state_format == "South Khorasan":
+                text = s.SouthKhorasan.req.SouthKhorasantemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
