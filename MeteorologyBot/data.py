@@ -51,7 +51,7 @@ cities_dict = {
     "Alborz": [("کرج", "karaj"), ("نظرآباد", "nazrabad"), ("طالقان", "taleqan")],
     "Ilam": [("ایلام", "ilam"), ("دهلران", "dehloran"), ("ایوان", "ivan")],
     "Bushehr": [("بوشهر", "bushehr"), ("برازجان", "borazjan"), ("خورموج", "khormoj")],
-    "Tehran": [("تهران", "tehran"), ("کرج", "karaj"), ("پرند", "parand")],
+    "Tehran": [("تهران", "tehran"), ("شهریار", "shahriar"), ("پرند", "parand")],
     "Chaharmahal and Bakhtiari": [
         ("شهرکرد", "shahrekord"),
         ("بروجن", "borujen"),
