@@ -9,6 +9,8 @@ import s.Kurdistan
 import s.Kurdistan.req
 import s.Lorestan
 import s.Lorestan.req
+import s.Markazi
+import s.Markazi.req
 
 
 
@@ -200,6 +202,11 @@ async def call_back_service(event: Message):
                 )
             elif user_state_format == "Lorestan":
                 text = s.Lorestan.req.Lorestantemp(user_city_format)
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
+            elif user_state_format == "Markazi":
+                text = s.Markazi.req.Markazitemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
