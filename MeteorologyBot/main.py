@@ -31,6 +31,8 @@ import s.WestAzerbaijan
 import s.WestAzerbaijan.req
 import s.Yazd
 import s.Yazd.req
+import s.Zanjan
+import s.Zanjan.req
 import s.tehran
 import s.tehran.req
 
@@ -287,6 +289,11 @@ async def call_back_service(event: Message):
                 )
             elif user_state_format == "Yazd":
                 text = s.Yazd.req.Yazdtemp(user_city_format)
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
+            elif user_state_format == "Zanjan":
+                text = s.Zanjan.req.Zanjantemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
