@@ -3,48 +3,11 @@ from config import *
 from messages import start_message
 from telethon.tl.custom.message import Message
 import s
-# from state.Alborz.req import *
-# from state.Ardabil.req import *
-# from state.Bushehr.req import *
-# from state.ChaharmahalandBakhtiari.req import *
-# from state.EastAzerbaijan.req import *
-# from state.Fars.req import *
-# from state.Gilan.req import *
-# from state.Golestan.req import *
-# from state.Hamadan.req import *
-# from state.Hormozgan.req import *
-# from state.Ilam.req import *
-# from state.Isfahan.req import *
-# from state.Kerman.req import *
 import mysql.connector
 from data import state, cities_dict
-import s.Alborz
-import s.Alborz.req
-import s.Ardabil
-import s.Ardabil.req
-import s.Bushehr
-import s.Bushehr.req
-import s.ChaharmahalandBakhtiari
-import s.ChaharmahalandBakhtiari.req
-import s.EastAzerbaijan
-import s.EastAzerbaijan.req
-import s.Fars
-import s.Fars.req
-import s.Gilan
-import s.Gilan.req
-import s.Golestan
-import s.Golestan.req
-import s.Hamadan
-import s.Hamadan.req
-import s.Hormozgan
-import s.Hormozgan.req
-import s.Ilam
-import s.Ilam.req
-import s.Isfahan
-import s.Isfahan.req
-import s.Kermanshah
-import s.Kermanshah.req
-import s.Khuzestan
+import s.Kurdistan
+import s.Kurdistan.req
+
 
 
 db = mysql.connector.connect(host=host, user=user, password=password, database=database)
@@ -218,8 +181,18 @@ async def call_back_service(event: Message):
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
-            elif user_state_format == "Kermanshah":
+            elif user_state_format == "Khuzestan":
                 text = s.Khuzestan.req.Khuzestantemp(user_city_format)
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
+            elif user_state_format == "Kohgiluyeh and Boyer-Ahmad":
+                text = s.KohgiluyehandBoyerAhmad.req.KohgiluyehandBoyerAhmadtemp(user_city_format)
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
+            elif user_state_format == "Kurdistan":
+                text = s.Kurdistan.req.Kurdistantemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
