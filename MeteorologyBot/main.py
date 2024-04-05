@@ -27,6 +27,8 @@ import s.SistanandBaluchestan
 import s.SistanandBaluchestan.req
 import s.SouthKhorasan
 import s.SouthKhorasan.req
+import s.WestAzerbaijan
+import s.WestAzerbaijan.req
 import s.tehran
 import s.tehran.req
 
@@ -273,6 +275,11 @@ async def call_back_service(event: Message):
                 )
             elif user_state_format == "Tehran":
                 text = s.tehran.req.tehrantemp(user_city_format)
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
+            elif user_state_format == "West Azerbaijan":
+                text = s.WestAzerbaijan.req.WestAzerbaijantemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
