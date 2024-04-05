@@ -2,21 +2,48 @@ from telethon import TelegramClient, events, Button
 from config import *
 from messages import start_message
 from telethon.tl.custom.message import Message
-from state.Alborz.req import *
-from state.Ardabil.req import *
-from state.Bushehr.req import *
-from state.ChaharmahalandBakhtiari.req import *
-from state.EastAzerbaijan.req import *
-from state.Fars.req import *
-from state.Gilan.req import *
-from state.Golestan.req import *
-from state.Hamadan.req import *
-from state.Hormozgan.req import *
-from state.Ilam.req import *
-from state.Isfahan.req import *
-from state.Kerman.req import *
+import s
+# from state.Alborz.req import *
+# from state.Ardabil.req import *
+# from state.Bushehr.req import *
+# from state.ChaharmahalandBakhtiari.req import *
+# from state.EastAzerbaijan.req import *
+# from state.Fars.req import *
+# from state.Gilan.req import *
+# from state.Golestan.req import *
+# from state.Hamadan.req import *
+# from state.Hormozgan.req import *
+# from state.Ilam.req import *
+# from state.Isfahan.req import *
+# from state.Kerman.req import *
 import mysql.connector
 from data import state, cities_dict
+import s.Alborz
+import s.Alborz.req
+import s.Ardabil
+import s.Ardabil.req
+import s.Bushehr
+import s.Bushehr.req
+import s.ChaharmahalandBakhtiari
+import s.ChaharmahalandBakhtiari.req
+import s.EastAzerbaijan
+import s.EastAzerbaijan.req
+import s.Fars
+import s.Fars.req
+import s.Gilan
+import s.Gilan.req
+import s.Golestan
+import s.Golestan.req
+import s.Hamadan
+import s.Hamadan.req
+import s.Hormozgan
+import s.Hormozgan.req
+import s.Ilam
+import s.Ilam.req
+import s.Isfahan
+import s.Isfahan.req
+import s.Kermanshah
+import s.Kermanshah.req
 
 
 db = mysql.connector.connect(host=host, user=user, password=password, database=database)
@@ -126,67 +153,67 @@ async def call_back_service(event: Message):
     match event.data:
         case b"temp":
             if user_state_format == "Alborz":
-                text = alborztemp(user_city_format)
+                text = s.Alborz.req.alborztemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
             elif user_state_format == "Ardabil":
-                text = ardabiltemp(user_city_format)
+                text = s.Ardabil.req.ardabiltemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
             elif user_state_format == "Bushehr":
-                text = bushehrtemp(user_city_format)
+                text = s.Bushehr.req.bushehrtemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
             elif user_state_format == "Chaharmahal and Bakhtiari":
-                text = ChaharmahalandBakhtiaritemp(user_city_format)
+                text = s.ChaharmahalandBakhtiari.req.ChaharmahalandBakhtiaritemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
             elif user_state_format == "East Azerbaijan":
-                text = EastAzerbaijantemp(user_city_format)
+                text = s.EastAzerbaijan.req.EastAzerbaijantemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
             elif user_state_format == "Fars":
-                text = Farstemp(user_city_format)
+                text = s.Fars.req.Farstemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
             elif user_state_format == "Gilan":
-                text = Gilantemp(user_city_format)
+                text = s.Gilan.req.Gilantemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
             elif user_state_format == "Golestan":
-                text = Golestantemp(user_city_format)
+                text = s.Golestan.req.Golestantemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
             elif user_state_format == "Hamedan":
-                text = Hamadantemp(user_city_format)
+                text = s.Hamadan.req.Hamadantemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
             elif user_state_format == "Hormozgan":
-                text = Hormozgantemp(user_city_format)
+                text = s.Hormozgan.req.Hormozgantemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
             elif user_state_format == "Ilam":
-                text = Ilamtemp(user_city_format)
+                text = s.Ilam.req.Ilamtemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
             elif user_state_format == "Isfahan":
-                text = Isfahantemp(user_city_format)
+                text = s.Isfahan.req.Isfahantemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
-            elif user_state_format == "Kerman":
-                text = Kermantemp(user_city_format)
+            elif user_state_format == "Kermanshah":
+                text = s.Kermanshah.req.Kermanshahtemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
