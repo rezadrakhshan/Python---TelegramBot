@@ -17,7 +17,8 @@ import s.NorthKhorasan
 import s.NorthKhorasan.req
 import s.Qazvin
 import s.Qazvin.req
-
+import s.Qom
+import s.Qom.req
 
 
 db = mysql.connector.connect(host=host, user=user, password=password, database=database)
@@ -142,7 +143,9 @@ async def call_back_service(event: Message):
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
             elif user_state_format == "Chaharmahal and Bakhtiari":
-                text = s.ChaharmahalandBakhtiari.req.ChaharmahalandBakhtiaritemp(user_city_format)
+                text = s.ChaharmahalandBakhtiari.req.ChaharmahalandBakhtiaritemp(
+                    user_city_format
+                )
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
@@ -197,7 +200,9 @@ async def call_back_service(event: Message):
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
             elif user_state_format == "Kohgiluyeh and Boyer-Ahmad":
-                text = s.KohgiluyehandBoyerAhmad.req.KohgiluyehandBoyerAhmadtemp(user_city_format)
+                text = s.KohgiluyehandBoyerAhmad.req.KohgiluyehandBoyerAhmadtemp(
+                    user_city_format
+                )
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
@@ -228,6 +233,11 @@ async def call_back_service(event: Message):
                 )
             elif user_state_format == "Qazvin":
                 text = s.Qazvin.req.Qazvintemp(user_city_format)
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
+            elif user_state_format == "Qom":
+                text = s.Qom.req.Qomtemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )

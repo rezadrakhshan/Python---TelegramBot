@@ -82,7 +82,7 @@ cities_dict = {
     ],
     "Fars": [("شیراز", "shiraz"), ("جهرم", "jahrom"), ("مرودشت", "marvdasht")],
     "Qazvin": [("قزوین", "qazvin"), ("تاکستان", "takestan"), ("البرز", "alborz")],
-    "Qom": [("قم", "qom"), ("کهک", "kahak"), ("جعفریه", "jafariyeh")],
+    "Qom": [("قم", "qom"), ("کاهک", "kahak"), ("جعفریه", "jafariyeh")],
     "Kurdistan": [("سنندج", "sanandaj"), ("مریوان", "marivan"), ("بانه", "baneh")],
     "Kerman": [("کرمان", "kerman"), ("سیرجان", "sirjan"), ("رفسنجان", "rafsanjan")],
     "Kermanshah": [
