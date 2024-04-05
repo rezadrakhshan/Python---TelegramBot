@@ -7,6 +7,8 @@ import mysql.connector
 from data import state, cities_dict
 import s.Kurdistan
 import s.Kurdistan.req
+import s.Lorestan
+import s.Lorestan.req
 
 
 
@@ -193,6 +195,11 @@ async def call_back_service(event: Message):
                 )
             elif user_state_format == "Kurdistan":
                 text = s.Kurdistan.req.Kurdistantemp(user_city_format)
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
+            elif user_state_format == "Lorestan":
+                text = s.Lorestan.req.Lorestantemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
