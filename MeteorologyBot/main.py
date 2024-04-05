@@ -19,6 +19,8 @@ import s.Qazvin
 import s.Qazvin.req
 import s.Qom
 import s.Qom.req
+import s.RazaviKhorasan
+import s.RazaviKhorasan.req
 
 
 db = mysql.connector.connect(host=host, user=user, password=password, database=database)
@@ -238,6 +240,11 @@ async def call_back_service(event: Message):
                 )
             elif user_state_format == "Qom":
                 text = s.Qom.req.Qomtemp(user_city_format)
+                await client.edit_message(
+                    event.chat_id, event.message_id, text, parse_mode="html"
+                )
+            elif user_state_format == "Razavi Khorasan":
+                text = s.RazaviKhorasan.req.Razavi_Khorasantemp(user_city_format)
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
