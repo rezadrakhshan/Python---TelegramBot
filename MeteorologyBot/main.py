@@ -5,6 +5,7 @@ from telethon.tl.custom.message import Message
 import s
 import mysql.connector
 from data import state, cities_dict
+from date import mytime 
 import s.Kurdistan
 import s.Kurdistan.req
 import s.Lorestan
@@ -109,6 +110,7 @@ async def call_back_city(event: Message):
     button = [
         [
             Button.inline("دما", data="temp"),
+            Button.inline("تاریخ", data="date"),
         ]
     ]
     for i in cities_dict.values():
@@ -268,7 +270,9 @@ async def call_back_service(event: Message):
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
             elif user_state_format == "Sistan and Baluchestan":
-                text = s.SistanandBaluchestan.req.SistanandBaluchestantemp(user_city_format)
+                text = s.SistanandBaluchestan.req.SistanandBaluchestantemp(
+                    user_city_format
+                )
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
@@ -297,7 +301,24 @@ async def call_back_service(event: Message):
                 await client.edit_message(
                     event.chat_id, event.message_id, text, parse_mode="html"
                 )
+        case b"date":
+            markup = client.build_reply_markup(
+                [
+                    [Button.inline("تاریخ", "datetime")],
+                    [Button.inline("تبدیل تاریخ", "changedate")],
+                ]
+            )
+            await client.edit_message(
+                event.chat_id, event.message_id, "لطفا گزینه خود را انتخاب کنید",buttons=markup
+            )
 
+
+@client.on(events.CallbackQuery)
+async def call_back_time(event: Message):
+    match event.data:
+        case b"datetime":
+            txt = mytime()
+            await client.edit_message(event.chat_id,event.message_id,txt)
 
 client.start(bot_token="")
 client.run_until_disconnected()
