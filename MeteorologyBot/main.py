@@ -320,5 +320,10 @@ async def call_back_time(event: Message):
             txt = mytime()
             await client.edit_message(event.chat_id,event.message_id,txt)
 
+
+@client.on(events.NewMessage(pattern=r"/help"))
+async def help(event):
+    await client.send_message(event.chat_id,message="سلام")
+
 client.start(bot_token="")
 client.run_until_disconnected()
